@@ -1,47 +1,59 @@
 <template>
-  <div class="hello">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="headline">
+        <h1>
+          {{ cv_data.profile.name }}
+          <span class="location">{{ cv_data.profile.location }}</span>
+        </h1>
+      </div>
+      <p>
+        {{ cv_data.profile.summary }}
+      </p>
 
-    <div class="headline">
-      <h1>Ryan Brooks Sheffield <span class="location">UK/Remote</span></h1>
+      <div class="cv-block">
+        <h2>Experience</h2>
+        <ul class="roles">
+          <li v-for="experience in cv_data.experience">
+            <h3>
+              {{ experience.organisation }}
+              <span class="location">{{ experience.location }}</span>
+              <span class="role">{{ experience.position }}</span>
+            </h3>
+            <span class="timeframe">{{ experience.term}}</span>
+            <p>
+              {{ experience.summary }}
+            </p>
+            <ul class="projects">
+              <li v-for="project in experience.projects">
+                <h4>
+                  {{ project.name }}
+                  <span class="company">{{ project.organisation }}</span>
+                </h4>
+                <span class="timeframe">{{ project.term }}</span>
+                <span class="timeframe-summary">{{ project.term_length }}</span>
+                <p>
+                  {{ project.summary }}
+                </p>
+                <ul class="skills">
+                  <li v-for="skill in project.skills">
+                    {{ skill }}
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-    <p>
-      An experienced CTO, leader and full-stack developer, with a focus on people, process and remote-first working. I have a track record of introducing Agile processes, TDD and code quality, and favour steady, lasting change and building for the future.
-    </p>
-
-    <div class="cv-block">
-      <h2>Experience</h2>
-      <ul class="roles">
-        <li>
-          <h3>
-            Slate Horse Ltd
-            <span class="location">Oxford/Sheffield</span>
-            <span class="role">Director &amp; Principal Consultant</span>
-          </h3>
-          <span class="timeframe">January 2015 – Present</span>
-          <p>
-            Offering Interim CTO services, project-based contract development and consultancy with a focus on software quality, testing, and empowering developers. I undertook the following projects:
-          </p>
-          <ul class="projects">
-            <li>
-              <h4>
-                National Pupil Database Find & Explore
-                <span class="company">Department for Education</span>
-              </h4>
-              <span class="timeframe">September 2018 – March 2019</span>
-              <span class="timeframe-summary">6 months</span>
-              <p>
-                Technical Architect in a cross-functional team. Used domain modelling to solve critical problems with the existing service. Prototyped Excel loading into ElasticSearch to help researchers discover available data, architected a VPN/RDP-based secure research environment, and a suite of standard extracts/process for researchers to access the data. Also assisted technical recruitment.
-              </p>
-              <ul class="skills">
-                <li>Ruby</li>
-                <li>ElasticSearch</li>
-                <li>PostgreSQL</li>
-                <li>SQL Server</li>
-                <li>Azure</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
+    <div class="col-sm-3">
+      <ul class="contact">
+        <li class="phone">{{ cv_data.profile.contact.phone }}</li>
+        <li class="email">{{ cv_data.profile.contact.email }}</li>
+        <li class="twitter">{{ cv_data.profile.social.twitter }}</li>
+        <li class="github">{{ cv_data.profile.social.github }}</li>
+        <li>stackoverflow.com/users/{{ cv_data.profile.social.stackoverflow_user_id }}</li>
+        <li>linkedin.com/in/{{ cv_data.profile.social.linkedin }}</li>
       </ul>
     </div>
   </div>
@@ -49,6 +61,9 @@
 
 <script>
 export default {
+  props: {
+    cv_data: Object
+  }
   // name: 'HelloWorld',
   // data () {
   //   return {
