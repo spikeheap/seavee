@@ -55,6 +55,52 @@
         <li>stackoverflow.com/users/{{ cv_data.profile.social.stackoverflow_user_id }}</li>
         <li>linkedin.com/in/{{ cv_data.profile.social.linkedin }}</li>
       </ul>
+
+      <h4>Skills</h4>
+      <ul>
+        <li v-for="skill_group in cv_data.profile.skills">
+          <span v-for="(skill, index) in skill_group.skills">
+            {{skill}}<span v-if="index <= skill_group.length">, </span>
+          </span>
+        </li>
+      </ul>
+
+      <h4>Certifications</h4>
+      <ul>
+        <li v-for="certification in cv_data.certifications">
+          <span>{{ certification.title}}</span>
+          <span v-if="certification.date">{{ certification.date}}</span>
+        </li>
+      </ul>
+
+      <h4>Community</h4>
+      <ul>
+        <li v-for="role in cv_data.community">
+          <span>{{ role.role }}</span>
+          <span>{{ role.organisation }}</span>
+          <span>{{ role.term }}</span>
+        </li>
+      </ul>
+
+      <!-- TODO: split into talks and workshops -->
+      <h4>Recent events</h4>
+      <ul>
+        <li v-for="event in cv_data.events">
+          <span>{{ event.event}}</span>
+          <span>{{ event.organisation}}</span>
+          <span>{{ event.date }}</span>
+        </li>
+      </ul>
+
+      <h4>Education</h4>
+      <ul>
+        <li v-for="qualification in cv_data.education">
+          <span>{{ qualification.qualification}}</span>
+          <span>{{ qualification.institution}}</span>
+          <span>{{ qualification.term }}</span>
+          <span>{{ qualification.summary }}</span>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
