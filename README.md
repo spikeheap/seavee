@@ -1,5 +1,11 @@
 # seavee
 
+## TODO
+
+- [ ] Turn contact links into `a` tags.
+- [ ] Document CV JSON/YML structure.
+- [ ] Turn `term` into `term_start` and `term_end`
+
 ## Project setup
 ```
 npm install
